@@ -1,0 +1,8 @@
+2 players play this game. In this case, one is the user and the other is the computer.
+Like real cricket with 2 innings and fixed wickets.
+Players bat or bowl by showing numbers with their hands. Valid numbers are 0, 1, 2, 3, 4, 5 and 6
+First toss is conducted. Players have to choose head or tail. Both the players show numbers. If the sum of the numbers of the two players is odd then head wins, else tail wins. The one who wins chooses to bat or bowl.
+Batter and bowler show their numbers at the same time. If the numbers of both the players are different, then the number of the batter gets added to the runs. If the numbers match, then the batter gets out.
+The batter cannot show 0 for consecutive three times. The bowler cannot give 0, else it will be a no ball, the batter will get an extra run, and the following ball will be a free hit.
+In the free hit, if the batter gets out he will be saved and will be offered no run.
+When all wickets fall, the other player chases the target in the next innings.
