@@ -55,8 +55,8 @@ public class Game {
 		for (int i = 0; i < 3; i++) {
 			last3.offer(6);
 		}
-		player1 = new Player(totalWickets, "You");
-		player2 = new Player(totalWickets, "Computer");
+		player1 = new You(totalWickets);
+		player2 = new Computer(totalWickets, this);
 	}
 
 	/**
@@ -95,6 +95,9 @@ public class Game {
 	private String remarks(int bat, int bowl) {
 		last3.offer(bat);
 		last3.poll();
+
+		batter.addToLast10(bat);
+		bowler.addToLast10(bowl);
 
 		// If bowl is a dot, it is a no ball
 		if (bowl == 0) {
@@ -219,43 +222,17 @@ public class Game {
 	 * Runs the common part of both innings
 	 */
 	public void common() {
-		int you;
-
-		// Accepting choice
-		while (true) {
-			Console.getConsole().printStyled("\nEnter choice: ", Esc.WHITE_FOREGROUND);
-			try {
-				you = Console.getConsole().inputInt(Esc.WHITE_FOREGROUND);
-			} catch (InputMismatchException e) {
-				Console.getConsole().printlnStyled("Invalid Input", Esc.RED_FOREGROUND);
-				continue;
-			}
-			if (you < 0 || you > 6) {
-				Console.getConsole().printlnStyled("Invalid Choice", Esc.RED_FOREGROUND);
-				continue;
-			}
-			break;
-		}
-		Console.getConsole().println();
-
-		int computer = random.nextInt(7);
-		if (computer == 0 && bowler == player2) {
-			computer = random.nextInt(7);
-		}
+		int bat = batter.getChoice(), bowl = bowler.getChoice();
 
 		// Drawing choices
 		Console.getConsole().printStyledCentered(batter.getName(), MAX_WIDTH/2, Esc.MAGENTA_FOREGROUND);
 		Console.getConsole().printlnStyledCentered(bowler.getName(), MAX_WIDTH/2, Esc.MAGENTA_FOREGROUND);
 		Console.getConsole().println();
-		if (batter == player1) {
-			drawNumber(you, computer);
-		} else {
-			drawNumber(computer, you);
-		}
+		drawNumber(bat, bowl);
 		Console.getConsole().println();
 
 		// Printing remarks and score
-		Console.getConsole().printlnStyledCentered(batter == player1? remarks(you, computer): remarks(computer, you), MAX_WIDTH, Esc.CYAN_FOREGROUND);
+		Console.getConsole().printlnStyledCentered(remarks(bat, bowl), MAX_WIDTH, Esc.CYAN_FOREGROUND);
 		Console.getConsole().println();
 		Console.getConsole().printlnStyled("%-20s\tStrike Rate: %.2f".formatted(
 				"%s - %d/%d (%d)".formatted(batter.getName(), batter.getRuns(), batter.getWickets(), batter.getBallsPlayed()),
@@ -348,5 +325,29 @@ public class Game {
 		batter.getFallOfWickets().forEach(f -> Console.getConsole().printlnStyled(f, Esc.RED_FOREGROUND));
 
 		Console.getConsole().println();
+	}
+
+	/**
+	 * Returns the batter
+	 * @return The batter
+	 */
+	public Player getBatter() {
+		return batter;
+	}
+
+	/**
+	 * Returns the batter
+	 * @return The batter
+	 */
+	public Player getBowler() {
+		return bowler;
+	}
+
+	/**
+	 * Returns the random number generator of the Game
+	 * @return The random number generator of the Game
+	 */
+	public Random getRandom() {
+		return random;
 	}
 }

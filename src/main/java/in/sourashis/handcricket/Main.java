@@ -7,6 +7,7 @@ import in.sourashis.handcricket.game.GameSupport;
 
 /**
  * Main class of the game
+ * @author Sourashis Pal
  */
 public class Main {
 

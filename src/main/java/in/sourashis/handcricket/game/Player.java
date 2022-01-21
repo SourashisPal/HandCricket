@@ -1,13 +1,12 @@
 package in.sourashis.handcricket.game;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Represents a Player of the game
  * @author Sourashis Pal
  */
-public class Player {
+public abstract class Player {
 	/** Runs scored **/
 	private int runs;
 
@@ -25,6 +24,9 @@ public class Player {
 
 	/** List of fall of wickets **/
 	private final List<FallOfWicket> fallOfWickets;
+
+	/** Stores the last twenty actual non 0 throws **/
+	private final Queue<Integer> last10 = new LinkedList<>(new Random().ints(10, 1, 7).boxed().toList());
 
 	/**
 	 * Initializes the Player
@@ -78,11 +80,29 @@ public class Player {
 	}
 
 	/**
+	 * Returns the last 20
+	 * @return The last 20
+	 */
+	public Queue<Integer> getLast10() {
+		return last10;
+	}
+
+	/**
 	 * Adds runs to the players score
 	 * @param hit The runs to add
 	 */
 	public void addRuns(int hit) {
 		runs += hit;
+	}
+
+	/**
+	 * Adds the actual score to the last 20
+	 * @param actualScore The actual number
+	 */
+	public void addToLast10(int actualScore) {
+		if (actualScore == 0) return;
+		last10.poll();
+		last10.offer(actualScore);
 	}
 
 	/**
@@ -115,4 +135,10 @@ public class Player {
 	public double strikeRate() {
 		return ballsPlayed == 0? 0: (double) runs / ballsPlayed * 100;
 	}
+
+	/**
+	 * Returns the choice of the Player
+	 * @return Choice of the Player
+	 */
+	public abstract int getChoice();
 }
