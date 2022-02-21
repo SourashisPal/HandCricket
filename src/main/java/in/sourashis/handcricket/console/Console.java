@@ -1,8 +1,5 @@
 package in.sourashis.handcricket.console;
 
-import in.sourashis.handcricket.Environment;
-
-import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -18,14 +15,9 @@ public class Console implements AutoCloseable {
 	private final Scanner sc = new Scanner(System.in);
 
 	/**
-	 * Initializes the Console object by setting the VirtualTerminalLevel
-	 * @throws IOException If reg.exe is not found
-	 * @throws InterruptedException If thread is interrupted
+	 * Initializes the Console object
 	 */
-	private Console() throws IOException, InterruptedException {
-		if (Environment.getEnvironment().isWindows()) {
-			new ProcessBuilder("reg", "add", "HKCU\\Console", "/v", "VirtualTerminalLevel", "/t", "REG_DWORD", "/d", "1", "/f").start().waitFor();
-		}
+	private Console() {
 	}
 
 	/**
@@ -35,11 +27,7 @@ public class Console implements AutoCloseable {
 	 */
 	public static Console getConsole() {
 		if (console == null) {
-			try {
-				console = new Console();
-			} catch (Exception e) {
-				throw new IllegalStateException("Console is not ready for use");
-			}
+			console = new Console();
 		}
 		return console;
 	}
