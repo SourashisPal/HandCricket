@@ -33,6 +33,13 @@ public class Console implements AutoCloseable {
 	}
 
 	/**
+	 * Produces a beep sound in the Console
+	 */
+	public void beep() {
+		System.out.print("\u0007");
+	}
+
+	/**
 	 * Sets the escape sequences
 	 * @param flags Sequences to set
 	 */

@@ -104,6 +104,7 @@ public class Game {
 			freeHit = true;
 			batter.addRuns(bat + 1);
 			addToTimeline(bat + 1 + "NB");
+			Console.getConsole().beep();
 			return "No Ball, Free Hit upcoming " + toWord.apply(bat) + " and an extra run";
 		}
 
@@ -172,10 +173,12 @@ public class Game {
 			try {
 				you = Console.getConsole().inputInt(Esc.WHITE_FOREGROUND);
 			} catch (InputMismatchException e) {
+				Console.getConsole().beep();
 				Console.getConsole().printlnStyled("Invalid Input", Esc.RED_FOREGROUND);
 				continue;
 			}
 			if (you < 0 || you > 6) {
+				Console.getConsole().beep();
 				Console.getConsole().printlnStyled("Invalid Choice ", Esc.RED_FOREGROUND);
 				continue;
 			}
@@ -296,6 +299,7 @@ public class Game {
 
 			// Checking chase win
 			if (batter.getRuns() > bowler.getRuns()) {
+				Console.getConsole().beep();
 				Console.getConsole().println();
 				Console.getConsole().printlnStyled("%s won by %d wickets".formatted(batter.getName(), totalWickets - batter.getWickets()), Esc.CYAN_FOREGROUND);
 				Console.getConsole().println();

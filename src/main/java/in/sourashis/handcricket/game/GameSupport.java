@@ -92,6 +92,7 @@ public class GameSupport {
 			try {
 				showRules();
 			} catch (IOException e) {
+				Console.getConsole().beep();
 				Console.getConsole().printlnStyled("Could not fetch rules", Esc.RED_FOREGROUND);
 			}
 			Console.getConsole().printlnStyled("-".repeat(Game.MAX_WIDTH), Esc.BLUE_FOREGROUND);
@@ -105,10 +106,12 @@ public class GameSupport {
 			try {
 				totalWickets = Console.getConsole().inputInt(Esc.WHITE_FOREGROUND);
 			} catch (InputMismatchException e) {
+				Console.getConsole().beep();
 				Console.getConsole().printlnStyled("Invalid Input", Esc.RED_FOREGROUND);
 				continue;
 			}
 			if (totalWickets <= 0) {
+				Console.getConsole().beep();
 				Console.getConsole().printlnStyled("Wickets must be greater than to 0", Esc.RED_FOREGROUND);
 				continue;
 			}

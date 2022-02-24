@@ -1,5 +1,7 @@
 package in.sourashis.handcricket.game;
 
+import in.sourashis.handcricket.console.Console;
+
 import java.util.*;
 
 /**
@@ -15,6 +17,9 @@ public abstract class Player {
 
 	/** Balls played **/
 	private int ballsPlayed;
+
+	/** Score of next milestone **/
+	private int nextMilestone = 50;
 
 	/** Total wickets in the game **/
 	private final int totalWickets;
@@ -93,6 +98,10 @@ public abstract class Player {
 	 */
 	public void addRuns(int hit) {
 		runs += hit;
+		if (runs >= nextMilestone) {
+			Console.getConsole().beep();
+			nextMilestone += 50;
+		}
 	}
 
 	/**
@@ -111,6 +120,7 @@ public abstract class Player {
 	public void fallWicket() {
 		wickets++;
 		fallOfWickets.add(new FallOfWicket(wickets, runs, ballsPlayed));
+		Console.getConsole().beep();
 	}
 
 	/**

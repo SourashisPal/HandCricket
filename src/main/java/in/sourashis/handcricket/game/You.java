@@ -29,10 +29,12 @@ public class You extends Player {
 			try {
 				choice = Console.getConsole().inputInt(Esc.WHITE_FOREGROUND);
 			} catch (InputMismatchException e) {
+				Console.getConsole().beep();
 				Console.getConsole().printlnStyled("Invalid Input", Esc.RED_FOREGROUND);
 				continue;
 			}
 			if (choice < 0 || choice > 6) {
+				Console.getConsole().beep();
 				Console.getConsole().printlnStyled("Invalid Choice", Esc.RED_FOREGROUND);
 				continue;
 			}
