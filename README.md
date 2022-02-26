@@ -41,5 +41,8 @@ target\maven-jlink\classifiers\runtime\bin\java -jar target\hand-cricket-2.0.jar
 
 ## Installation
 
-- The Windows Installer of this application is available [here](https://sourashispal.github.io/downloads/hand-cricket)
-- Version history is available [here](https://sourashispal.github.io/downloads/hand-cricket/version-history.html)
+### Windows Installation
+- Download and run the installer from [here](https://sourashispal.github.io/downloads/hand-cricket)
+- Follow the setup instructions and install the application
+- Search for **Hand Cricket** in the start menu or click on the desktop icon (if you have created it)
+
