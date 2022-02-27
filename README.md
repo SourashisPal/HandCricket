@@ -14,8 +14,8 @@ The rules of the game are given [here](src/main/resources/rules.txt)
 ```
 # Compiling
 cd
-git clone https://www.github.com/SourashisPal/HandCricket.git
-cd HandCricket
+git clone https://www.github.com/SourashisPal/hand-cricket.git
+cd hand-cricket
 mvn install
 
 # Running
@@ -26,8 +26,8 @@ target/maven-jlink/classifiers/runtime/bin/java -jar target/hand-cricket-2.0.jar
 ```
 # Compiling
 cd \
-git clone https://www.github.com/SourashisPal/HandCricket.git
-cd HandCricket
+git clone https://www.github.com/SourashisPal/hand-cricket.git
+cd hand-cricket
 mvn install
 
 # Running
