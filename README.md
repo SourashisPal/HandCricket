@@ -51,7 +51,7 @@ target\maven-jlink\classifiers\runtime\bin\java -jar target\hand-cricket-2.0.jar
 - Download the deb package from [here](https://sourashispal.github.io/downloads/hand-cricket)
 - Open it using the Software Installation software
 - Install it
-- Remove it from Software Installation software
+- Remove it from Software Installation software<br>
 **Or**
 ```
 # Installation
